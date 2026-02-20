@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# Art Gallery Data Table
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional, modern data table application built with **React**, **TypeScript**, and **Vite**. This project interfaces with the [Art Institute of Chicago API](https://api.artic.edu/docs/) to display artwork data with advanced features like server-side pagination and persistent row selection.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Server-Side Pagination**: Efficiently fetches data on demand. No bulk data pre-loading or caching of previous pages.
+- **Persistent Selection**: Row selections are preserved across page navigations using ID-based tracking.
+- **Custom Bulk Selection**: A specialized overlay panel allows selecting the first *N* rows of the current page.
+- **Modern UI/UX**:
+    - **Dark Theme**: Deep indigo/slate gradient background.
+    - **Glassmorphism**: Frosted glass effects on cards and headers.
+    - **Animations**: Smooth entrance animations, staggered row loading, and micro-interactions.
+    - **Responsive Design**: Polished layout using PrimeFlex and custom CSS.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React 18 + Vite
+- **Language**: TypeScript
+- **UI Library**: [PrimeReact](https://primereact.org/) (DataTable, OverlayPanel, InputNumber)
+- **Styling**: PrimeFlex + Custom CSS Variables + CSS Keyframe Animations
+- **HTTP Client**: Native Fetch API
 
-## Expanding the ESLint configuration
+## 📦 Installation & Running
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/swarajladke/art-gallery.git
+    cd art-gallery
+    ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧩 Key Implementation Details
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **`useArtworks` Hook**: Encapsulates data fetching logic, handling loading states and errors.
+- **Persistent State**: Utilizes a `Set<number>` to track selected IDs independently of the visible data.
+- **Optimization**: The `DataTable` is used in `lazy` mode to ensure strict server-side pagination compliance.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🎨 UI Highlights
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The application features a custom implementation of PrimeReact components with:
+- **Inter** font family for clean typography.
+- Custom gradients for buttons and text.
+- Overridden PrimeReact styles for a cohesive dark mode aesthetic.
+
+---
+*Built for the React Internship Assignment.*
